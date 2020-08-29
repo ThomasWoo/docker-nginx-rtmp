@@ -22,6 +22,10 @@ docker run -it --rm -p 1935:1935 -p 8080:80 nginx-rtmp
 ```
 docker run -itd -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
+* Mount your own config file by :
+```
+docker run -itd -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+```
 
 ### Start Stream
 * Push an rtmp stream to :
