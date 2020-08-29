@@ -13,10 +13,14 @@ Docker build file for nginx with nginx-rtmp-module. Act as a rtmp &amp; hls stre
 docker pull thomaswoo/nginx-rtmp
 docker run -it --rm -p 1935:1935 -p 8080:80 thomaswoo/nginx-rtmp
 ```
-or
+or build it by yourself :
 ```
 docker build -t nginx-rtmp .
 docker run -it --rm -p 1935:1935 -p 8080:80 nginx-rtmp
+```
+* If the test flight runs well, start a daemon :
+```
+docker run -itd -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 
 ### Start Stream
