@@ -58,6 +58,6 @@ Change username/password by create a new htpasswd file and mount to : `/etc/ngin
 
 ## Reference
 * https://alpinelinux.org/
-* http://nginx.org
+* https://nginx.org
 * https://github.com/arut/nginx-rtmp-module
 * https://obsproject.com/
