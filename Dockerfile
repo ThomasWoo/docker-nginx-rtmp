@@ -55,6 +55,7 @@ LABEL MAINTAINER Thomas Woo <i@thomaswoo.com>
 ENV HTTP_PORT 80
 ENV HTTPS_PORT 443
 ENV RTMP_PORT 1935
+ENV HLS_AUTO_INDEX off
 
 RUN set -ex && \
   apk add --update \

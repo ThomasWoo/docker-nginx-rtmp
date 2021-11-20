@@ -60,7 +60,7 @@ http {
             root /opt/data;
             add_header Cache-Control no-cache;
             add_header Access-Control-Allow-Origin *;
-            #autoindex on;
+            autoindex ${HLS_AUTO_INDEX};
             expires -1;
         }
 
@@ -72,7 +72,7 @@ http {
           }
           add_header Cache-Control no-cache;
           add_header Access-Control-Allow-Origin *;
-          #autoindex on;
+          autoindex ${HLS_AUTO_INDEX};
           expires -1;
         }
 
