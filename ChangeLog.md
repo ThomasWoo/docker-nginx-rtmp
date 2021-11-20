@@ -4,6 +4,7 @@
 * update alpine linux to 3.14
 * rename nginx.conf to nginx.conf.template & optimize ADD method in build file
 * optimize rtmp & hls directives in configure file
+* add autoindex environment variable
 * other optimization in configure file
 
 # V0.9.2
