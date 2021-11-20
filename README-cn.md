@@ -2,7 +2,7 @@
 
 Docker build file for nginx with nginx-rtmp-module. Act as a rtmp &amp; hls streaming server. Based on Alpine Linux.
 
-Nginx + nginx-rtmp-module 模块的 Dockerfile，用于搭建 rtmp + hls 流媒体服务器。基于 Alpine Linux。
+Nginx 服务器 + nginx-rtmp-module 模块的 Dockerfile，用于搭建 rtmp + hls 流媒体服务器。基于 Alpine Linux。
 
 [Doc in English](README.md)
 
