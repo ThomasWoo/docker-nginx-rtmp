@@ -6,6 +6,7 @@
 * optimize rtmp & hls directives in configure file
 * add autoindex environment variable
 * other optimization in configure file
+* change to MIT License
 
 # V0.9.2
 * disabled autoindex in nginx.conf `/live` section
