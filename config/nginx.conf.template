@@ -17,6 +17,7 @@ rtmp {
             wait_video  on;
             sync        120ms;
             hls         on;
+            hls_fragment_naming system;
             hls_fragment    8;
             hls_playlist_length 40s;
             hls_path /opt/data/hls;
