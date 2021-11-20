@@ -12,11 +12,14 @@ rtmp {
         listen ${RTMP_PORT};
 
         application stream {
-            live on;
-            hls on;
+            live        on;
+            wait_key    on;
+            wait_video  on;
+            sync        120ms;
+            hls         on;
             hls_fragment_naming system;
-            hls_fragment 5;
-            hls_playlist_length 10;
+            hls_fragment    8;
+            hls_playlist_length 40s;
             hls_path /opt/data/hls;
             #hls_nested on;
         }
@@ -29,10 +32,10 @@ http {
     include       mime.types;
     default_type  application/octet-stream;
 
-    ssl_ciphers         HIGH:!aNULL:!MD5;
-    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-    ssl_session_cache   shared:SSL:10m;
-    ssl_session_timeout 10m;
+    #ssl_ciphers         HIGH:!aNULL:!MD5;
+    #ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    #ssl_session_cache   shared:SSL:10m;
+    #ssl_session_timeout 10m;
 
     server {
         listen ${HTTP_PORT};
@@ -57,7 +60,7 @@ http {
             root /opt/data;
             add_header Cache-Control no-cache;
             add_header Access-Control-Allow-Origin *;
-            #autoindex on;
+            autoindex ${HLS_AUTO_INDEX};
             expires -1;
         }
 
@@ -69,7 +72,7 @@ http {
           }
           add_header Cache-Control no-cache;
           add_header Access-Control-Allow-Origin *;
-          #autoindex on;
+          autoindex ${HLS_AUTO_INDEX};
           expires -1;
         }
 
@@ -90,7 +93,7 @@ http {
         location = /crossdomain.xml {
             root /www/static;
             default_type text/xml;
-            expires 1h;
+            expires 1d;
         }
     }
 }

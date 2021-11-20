@@ -2,8 +2,8 @@
 
 Docker build file for nginx with nginx-rtmp-module. Act as a rtmp &amp; hls streaming server. Based on Alpine Linux.
 
-* Nginx 1.18.0
-* nginx-rtmp-module 1.2.1
+* Nginx 1.20.2
+* nginx-rtmp-module 1.2.2
 
 ## Usage
 
@@ -13,7 +13,7 @@ Docker build file for nginx with nginx-rtmp-module. Act as a rtmp &amp; hls stre
 docker pull thomaswoo/nginx-rtmp
 docker run -it --rm -p 1935:1935 -p 8080:80 thomaswoo/nginx-rtmp
 ```
-or build it by yourself :
+or build it by yourself and run:
 ```
 docker build -t nginx-rtmp .
 docker run -it --rm -p 1935:1935 -p 8080:80 nginx-rtmp
@@ -25,6 +25,10 @@ docker run -itd -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=alway
 * Mount your own config file by :
 ```
 docker run -itd -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+```
+* Set autoindex on hls path :
+```
+docker run -itd -p 1935:1935 -p 8080:80 -e HLS_AUTO_INDEX=on --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 
 ### Start Stream
@@ -54,6 +58,6 @@ Change username/password by create a new htpasswd file and mount to : `/etc/ngin
 
 ## Reference
 * https://alpinelinux.org/
-* http://nginx.org
+* https://nginx.org
 * https://github.com/arut/nginx-rtmp-module
 * https://obsproject.com/

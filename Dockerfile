@@ -1,12 +1,14 @@
-ARG NGINX_VERSION=1.18.0
-ARG NGINX_RTMP_VERSION=1.2.1
+ARG NGINX_VERSION=1.20.2
+ARG NGINX_RTMP_VERSION=1.2.2
 
 ##############################
-FROM alpine:3.12 as build-container
+FROM alpine:3.14 as build-container
 ARG NGINX_VERSION
 ARG NGINX_RTMP_VERSION
 
 RUN set -ex && \
+  # Uncomment to accelerate with aliyun mirror if you are in Mainland China
+  #sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
   apk add --update \
     build-base \
     ca-certificates \
@@ -37,27 +39,30 @@ RUN set -ex && \
     --add-module=/tmp/nginx-rtmp-module-${NGINX_RTMP_VERSION} \
     --conf-path=/etc/nginx/nginx.conf \
     --with-threads \
+    --with-pcre \
+    --with-poll_module \
     --with-file-aio \
     --with-http_ssl_module \
+    --with-http_v2_module \
     --with-debug \
     --with-cc-opt="-Wimplicit-fallthrough=0" && \
     make && make install
 
 ##########################
-FROM alpine:3.12
+FROM alpine:3.14
 LABEL MAINTAINER Thomas Woo <i@thomaswoo.com>
 
 ENV HTTP_PORT 80
 ENV HTTPS_PORT 443
 ENV RTMP_PORT 1935
+ENV HLS_AUTO_INDEX off
 
 RUN set -ex && \
   apk add --update \
     ca-certificates \
     gettext \
     openssl \
-    pcre \
-    curl && \
+    pcre && \
   mkdir -p /opt/data && \
   mkdir /www
 
@@ -66,9 +71,7 @@ COPY --from=build-container /etc/nginx /etc/nginx
 
 # Add NGINX path, config and static files.
 ENV PATH "${PATH}:/usr/local/nginx/sbin"
-ADD config/nginx.conf /etc/nginx/nginx.conf.template
-ADD config/htpasswd_admin /etc/nginx/htpasswd_admin
-ADD config/htpasswd_viewer /etc/nginx/htpasswd_viewer
+ADD config/* /etc/nginx/
 ADD static /www/static
 
 EXPOSE 80
