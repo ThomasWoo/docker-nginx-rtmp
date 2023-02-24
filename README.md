@@ -24,15 +24,15 @@ docker run -it --rm -p 1935:1935 -p 8080:80 nginx-rtmp
 ```
 * If the test flight runs well, start a daemon :
 ```
-docker run -itd -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 * Mount your own config file by :
 ```
-docker run -itd -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 * Set autoindex on hls path :
 ```
-docker run -itd -p 1935:1935 -p 8080:80 -e HLS_AUTO_INDEX=on --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 -e HLS_AUTO_INDEX=on --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 
 ### Start Stream
