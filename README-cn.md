@@ -24,15 +24,15 @@ docker run -it --rm -p 1935:1935 -p 8080:80 nginx-rtmp
 ```
 * 如果测试没有问题，就可以启动后台运行 ：
 ```
-docker run -itd -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 * 加载自己的配置文件模板 ：
 ```
-docker run -itd -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 -v /path/to/nginx.conf:/etc/nginx/nginx.conf.template --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 * 设置 hls 播放路径的 autoindex ：
 ```
-docker run -itd -p 1935:1935 -p 8080:80 -e HLS_AUTO_INDEX=on --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
+docker run -d -p 1935:1935 -p 8080:80 -e HLS_AUTO_INDEX=on --name nginx-rtmp-server --restart=always thomaswoo/nginx-rtmp
 ```
 
 ### 推流
